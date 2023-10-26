@@ -8,7 +8,7 @@ It fetches its Dart dependencies automatically through `pub2nix`, and (through a
 
 If you are packaging a Flutter desktop application, use [`buildFlutterApplication`](#ssec-dart-flutter) instead.
 
-`pubspecLock` is the parsed pubspec.lock file. pub2nix uses this to download required packages.  
+`pubspecLock` is the parsed pubspec.lock file. pub2nix uses this to download required packages.
 This can be converted to JSON from YAML with something like `yq . pubspec.lock`, and then read by Nix.
 
 If the package has Git package dependencies, the hashes must be provided in the `gitHashes` set. If a hash is missing, an error message prompting you to add it will be shown.
