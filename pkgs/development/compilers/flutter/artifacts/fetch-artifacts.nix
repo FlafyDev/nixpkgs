@@ -1,6 +1,6 @@
 { lib
 , runCommand
-, xorg
+, lndir
 , cacert
 , unzip
 
@@ -29,7 +29,7 @@ let
 in
 runCommand "flutter-artifacts-${platform}"
 {
-  nativeBuildInputs = [ xorg.lndir flutter' unzip ];
+  nativeBuildInputs = [ lndir flutter' unzip ];
 
   NIX_FLUTTER_TOOLS_VM_OPTIONS = "--root-certs-file=${cacert}/etc/ssl/certs/ca-bundle.crt";
 
