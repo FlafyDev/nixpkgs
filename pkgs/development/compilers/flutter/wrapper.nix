@@ -128,6 +128,7 @@ in
   passthru = flutter.passthru // {
     inherit (flutter) version;
     unwrapped = flutter;
+    updateScript = ./update.py;
     inherit cacheDir;
   };
 
