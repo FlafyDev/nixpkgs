@@ -17572,8 +17572,6 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
-  dart-sass-embedded = callPackage ../misc/dart-sass-embedded { };
-
   clojupyter = callPackage ../applications/editors/jupyter-kernels/clojupyter {
     jre = jre8;
   };
@@ -41616,7 +41614,7 @@ with pkgs;
 
   dart-sass = callPackage ../development/tools/misc/dart-sass { };
 
-  fetchDartDeps = callPackage ../build-support/dart/fetch-dart-deps { };
+  pub2nix = recurseIntoAttrs (callPackage ../build-support/dart/pub2nix { });
 
   buildDartApplication = callPackage ../build-support/dart/build-dart-application { };
 
