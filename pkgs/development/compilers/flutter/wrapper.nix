@@ -10,7 +10,7 @@
   ++ lib.optional stdenv.hostPlatform.isLinux "linux"
   ++ lib.optional (stdenv.hostPlatform.isx86_64 || stdenv.hostPlatform.isDarwin) "android"
   ++ lib.optionals stdenv.hostPlatform.isDarwin [ "macos" "ios" ]
-, artifactHashes ? (import ./artifacts/hashes.nix).${flutter.version}
+, artifactHashes ? flutter.artifactHashes
 , extraPkgConfigPackages ? [ ]
 , extraLibraries ? [ ]
 , extraIncludes ? [ ]
@@ -128,6 +128,7 @@ in
   passthru = flutter.passthru // {
     inherit (flutter) version;
     unwrapped = flutter;
+    updateScript = ./update.py;
     inherit cacheDir;
   };
 
