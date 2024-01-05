@@ -48,7 +48,9 @@ let
     (lib.genAttrs (builtins.attrValues dependencyTypes) (dependencyType: [ ]))
     pubspecLock.packages;
 
-  # fetchTarball fails with "tarball contains an unexpected number of top-level files". This is a workaround.
+  # The hash in `pubspec.lock` is for the archive itself.
+  # If we use `fetchTarball` instead of `fetchurl`, we'll need to input the hash for the files after extraction, which we don't have.
+  # Additionally, `fetchTarball` fails with "tarball contains an unexpected number of top-level files".
   # https://discourse.nixos.org/t/fetchtarball-with-multiple-top-level-directories-fails/20556
   mkHostedDependencySource = name: details:
     let
