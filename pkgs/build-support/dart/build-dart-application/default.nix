@@ -44,7 +44,7 @@
 
 , runtimeDependencies ? [ ]
 , extraWrapProgramArgs ? ""
-, pubspecLock
+, pubspecLock ? null
 , ...
 }@args:
 
@@ -121,4 +121,8 @@ let
 in
 assert !(builtins.isString dartOutputType && dartOutputType != "") ->
 throw "dartOutputType must be a non-empty string";
+assert builtins.typeOf pubspecLock != "set" ->
+throw ("pubspecLock was not provided correctly. It requires a nix object of pubspec.lock." +
+  "\n - Run `nix-shell -p yq-go --run \"yq eval pubspec.lock -o=json > pubspec.lock.json\"`" +
+  "\n - Add the following line to your derivation: `pubspecLock = lib.importJSON ./pubspec.lock.json;`");
 baseDerivation
